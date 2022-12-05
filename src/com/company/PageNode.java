@@ -29,4 +29,18 @@ public class PageNode {
 
         return newPage;
     }
+
+    public int getNumberOfPageLines() {
+        return info.getNumberOfLines();
+    }
+
+    // prints all lines in the page
+    public void print() {
+        info.print();
+    }
+
+    // prints the first n lines in the page
+    public void print(int n) {
+        info.print(n);
+    }
 }
