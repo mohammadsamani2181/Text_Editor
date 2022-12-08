@@ -82,4 +82,46 @@ public class Editor {
         currentPage.print(n);
     }
 
+    // appends the given string to the end of the current page
+    public void append(String str) {
+        PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
+        currentPage.append(str.lines().toArray(String[]::new));
+    }
+
+    // inserts the given string "newLine" to the nth line of the current page
+    public void insert(String newLine, int n) {
+        PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
+        currentPage.insert(newLine, n);
+    }
+
+    // removes nth line of the current page
+    public void remove(int n) {
+        PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
+        currentPage.remove(n);
+    }
+
+    // replaces the string currently in line n with the given string "newLine"
+    public void replace(int n, String newLine) {
+        PageNode currentNode = pagesList.getSpecificPage(currentPageNumber);
+        currentNode.replace(n, newLine);
+    }
+
+    // swaps line n with line m in the current page
+    public void swap(int n, int m) {
+        PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
+        currentPage.swap(n, m);
+    }
+
+    // search every page in the linkedList and print :
+    // <<the page number>> , <<the line number>> , <<the text of the line>>
+    public void find(String string) {
+        pagesList.find(string);
+    }
+
+    // finds all instance of string "oldString" in the linkedList (file)
+    // and replace them with string "newString"
+    public void findAndReplace(String oldString, String newString) {
+        pagesList.findAndReplace(oldString, newString);
+    }
+
 }
