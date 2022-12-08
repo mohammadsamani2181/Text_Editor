@@ -17,7 +17,18 @@ public class LineNode {
         this.next = next;
     }
 
+    public String getInfo() {
+        return info;
+    }
 
+    public void setInfo(String line) {
+        this.info = line;
+    }
+
+    // replaces all usage of "oldString" in <<info>> with "newString"
+    public void replace(String oldString, String newString) {
+        setInfo(info.replace(oldString, newString));
+    }
 
     public void print() {
         System.out.println(info);
