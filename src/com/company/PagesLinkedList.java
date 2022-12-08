@@ -50,6 +50,34 @@ public class PagesLinkedList {
         return temp;
     }
 
+    // search every page (node) in the linkedList (file) and prints :
+    // <<the page number>> , <<the line number>> , <<the text of the line>>
+    public void find(String string) {
+        PageNode temp = first;
+
+        for (int i = 0; temp != null; i++) {
+            String result = "";
+            result += temp.find(string);
+            temp = temp.getNext();
+
+            if (!result.equals("")) {
+                System.out.println("Page <<" + i + ">> : ");
+                System.out.println(result);
+            }
+        }
+    }
+
+    // finds all instance of string "oldString" in the likedList (file)
+    // and replace them with "newString"
+    public void findAndReplace(String oldString, String newString) {
+        PageNode temp = first;
+
+        while (temp != null) {
+            temp.findAndReplace(oldString, newString);
+            temp = temp.getNext();
+        }
+    }
+
     public void printAllPages() {
         if (!isEmpty()) {
             PageNode temp = first;
