@@ -109,7 +109,7 @@ public class LinesLinkedList {
         for (int i = 0; temp != null; i++) {
             if (temp.getInfo().contains(str)) {
 
-                result += "found in line " + i + "th"
+                result += "found in line " + (i+1)
                         + "\nline : " + temp.getInfo()
                         + "\n----------------------------\n";
 
