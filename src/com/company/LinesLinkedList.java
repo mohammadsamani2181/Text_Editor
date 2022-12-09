@@ -49,12 +49,37 @@ public class LinesLinkedList {
 
     // inserts the given string "newLine" to the nth line of the page
     public void insert(String newLine, int lineNumber) {
-        LineNode node = getSpecificLine(lineNumber);
-        node.setInfo(newLine);
+        if (isEmpty()) {
+            System.out.println("The linked list is empty");
+            return;
+        }
+
+        LineNode currentNode = first;
+        LineNode previousNode = null;
+        LineNode newNode = new LineNode(newLine);
+
+        for (int i = 0; i <lineNumber && currentNode != null; i++) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+
+        if (previousNode == null) {
+            newNode.setNext(first);
+            first = newNode;
+        }
+        else {
+            newNode.setNext(previousNode.getNext());
+            previousNode.setNext(newNode);
+        }
     }
 
     // removes the nth line of the page
     public void remove(int n) {
+        if (isEmpty()) {
+            System.out.println("The linked list is empty");
+            return;
+        }
+
         LineNode currentNode = first;
         LineNode previousNode = null;
 
@@ -63,31 +88,18 @@ public class LinesLinkedList {
             currentNode = currentNode.getNext();
         }
 
-        try {
+        if (previousNode == null) {
+            first = first.getNext();
+        }
+        else {
             previousNode.setNext(currentNode.getNext());
-        }catch (NullPointerException e) {
-            e.printStackTrace();
         }
     }
 
     // replaces the string currently in line n with the given string "newLine"
     public void replace(int n, String newLine) {
-        LineNode currentNode = first;
-        LineNode previousNode = null;
-        LineNode newNode = new LineNode(newLine);
-
-        for (int i = 0; i <n && currentNode != null; i++) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-
-        try {
-            newNode.setNext(previousNode.getNext());
-            previousNode.setNext(newNode);
-        }catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
+        LineNode node = getSpecificLine(n);
+        node.setInfo(newLine);
     }
 
     // swaps line n with line m in the linkedList
@@ -151,6 +163,7 @@ public class LinesLinkedList {
 
         for (int i = 0; i < n && temp != null; i++) {
             temp.print();
+            temp = temp.getNext();
         }
     }
 }
