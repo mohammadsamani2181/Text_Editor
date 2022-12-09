@@ -83,10 +83,10 @@ public class Editor {
     }
 
     // appends the given string to the end of the current page
-    public void append(String str) {
+    public void append(String[] liens) {
         PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
-        currentPage.append(str.lines().toArray(String[]::new));
-    }
+        currentPage.append(liens);
+}
 
     // inserts the given string "newLine" to the nth line of the current page
     public void insert(String newLine, int n) {
