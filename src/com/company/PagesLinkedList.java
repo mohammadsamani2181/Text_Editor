@@ -61,7 +61,7 @@ public class PagesLinkedList {
             temp = temp.getNext();
 
             if (!result.equals("")) {
-                System.out.println("Page <<" + i + ">> : ");
+                System.out.println("Page <<" + (i+1) + ">> : ");
                 System.out.println(result);
             }
         }
