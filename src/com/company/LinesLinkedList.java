@@ -94,10 +94,10 @@ public class LinesLinkedList {
     public void swap(int n, int m) {
         LineNode nthLine = getSpecificLine(n);
         LineNode mthLine = getSpecificLine(m);
-        LineNode temp = nthLine;
+        String temp = nthLine.getInfo();
 
         nthLine.setInfo(mthLine.getInfo());
-        mthLine.setInfo((temp.getInfo()));
+        mthLine.setInfo(temp);
     }
 
     //  finds all lines(nodes) with the given string "str" and return the "result" string
