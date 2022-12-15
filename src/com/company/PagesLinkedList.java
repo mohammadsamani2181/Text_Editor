@@ -23,6 +23,15 @@ public class PagesLinkedList {
         }
     }
 
+    public void removeLineINSpecificPage(int pageNumber, int lineNumber) {
+        PageNode node = getSpecificPage(pageNumber);
+        boolean wasTheLastLineInPage = node.remove(lineNumber);
+
+        if (wasTheLastLineInPage) {
+            removeSpecificPage(pageNumber);
+        }
+    }
+
     public boolean isEmpty() {
         return (first == null);
     }
@@ -75,6 +84,28 @@ public class PagesLinkedList {
         while (temp != null) {
             temp.findAndReplace(oldString, newString);
             temp = temp.getNext();
+        }
+    }
+
+    private void removeSpecificPage(int pageNumber) {
+        if (isEmpty()) {
+            System.out.println("The linked list is empty");
+            return;
+        }
+
+        PageNode currentNode = first;
+        PageNode previousNode = null;
+
+        for (int i = 0; i < pageNumber && currentNode != null; i++) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+
+        if (previousNode == null) {
+            first = first.getNext();
+        }
+        else {
+            previousNode.setNext(currentNode.getNext());
         }
     }
 
