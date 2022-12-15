@@ -57,8 +57,8 @@ public class PageNode {
     }
 
     // removes the nth line of the page
-    public void remove(int n) {
-        info.remove(n);
+    public boolean remove(int n) {
+        return info.remove(n);
     }
 
     // replaces the nth line of the page with the given string "newLine"
