@@ -1,13 +1,51 @@
 package com.company;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class PagesLinkedList {
+public class PagesLinkedList implements Serializable{
     private PageNode first; // first page (node) in the linkedList
     private PageNode last; // last page (node) in the linkedList
 
     public PagesLinkedList() {
         first = last = null;
+    }
+
+    public PageNode getFirst() {
+        return first;
+    }
+
+    public PageNode getLast() {
+        return last;
+    }
+
+    public ArrayList<PageNode> getAllNodes() {
+        PageNode temp = first;
+        ArrayList<PageNode> nodes = new ArrayList<>();
+
+        while (temp != null) {
+            nodes.add(temp);
+            temp = temp.getNext();
+        }
+
+        return nodes;
+    }
+
+    // makes a deep copy of the object and returns it
+    public PagesLinkedList deepCopyUsingSerialization() {
+        try {
+            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream outputStream = new ObjectOutputStream(arrayOutputStream);
+            outputStream.writeObject(this);
+
+            ByteArrayInputStream arrayInputStream = new ByteArrayInputStream(arrayOutputStream.toByteArray());
+            ObjectInputStream inputStream = new ObjectInputStream(arrayInputStream);
+
+            return (PagesLinkedList) inputStream.readObject();
+
+        } catch (Exception e) {
+            return  null;
+        }
     }
 
     // adds new page (new node) to the linkedList
