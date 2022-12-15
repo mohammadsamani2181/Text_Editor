@@ -32,8 +32,8 @@ public class Editor {
             page = new ArrayList<>();
             String line = scan.nextLine();
 
-            // pages separate from each other with "####" sign in the text file
-            while (!line.equals("####")) {
+            // pages separate from each other with "$" sign in the text file
+            while (!line.equals("$")) {
                 page.add(line);
 
                 if (scan.hasNext()) {
