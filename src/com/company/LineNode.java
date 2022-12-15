@@ -1,6 +1,8 @@
 package com.company;
 
-public class LineNode {
+import java.io.Serializable;
+
+public class LineNode implements Serializable {
     private String info; // a line of text
     private LineNode next; // next node after this node in linkedList
     
