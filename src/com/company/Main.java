@@ -121,9 +121,25 @@ public class Main {
                 editor.findAndReplace(oldString, newString);
             }
 
-            else if (order.equals("save")) {
-
+            else if (order.equals("undo")) {
+                editor.undo();
             }
+
+            else if (order.equals("redo")) {
+                editor.redo();
+            }
+
+            else if (order.equals("save")) {
+                System.out.println("Please enter file address : ");
+                String address = scan.nextLine();
+
+                editor.save(address);
+            }
+
+            else {
+                System.out.println("!!  Undefined order  !!");
+            }
+
         }while (order != "save");
     }
 }
