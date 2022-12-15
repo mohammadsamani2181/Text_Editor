@@ -10,11 +10,15 @@ import java.util.Scanner;
 public class Editor {
     private PagesLinkedList pagesList;
     private int currentPageNumber;
+    private Stack undoStack;
+    private Stack redoStack;
 
     // creates a linkedList of pages and parse a text file into it
     public Editor(String address) {
         pagesList = new PagesLinkedList();
         currentPageNumber = 0;
+        undoStack = new Stack();
+        redoStack = new Stack();
         parse(address);
     }
 
@@ -161,6 +165,41 @@ public class Editor {
     // and replace them with string "newString"
     public void findAndReplace(String oldString, String newString) {
         pagesList.findAndReplace(oldString, newString);
+    }
+
+    // undo the last change
+    public void undo() {
+        pushIntoRedoStack(pagesList);
+        pagesList = popFromUndoStack();
+    }
+
+    public void redo() {
+        pushIntoUndoStack(pagesList);
+        pagesList = popFromRedoStack();
+    }
+
+    // pushes the given PagesLinkedList into the undoStack
+    private void pushIntoUndoStack(PagesLinkedList list) {
+        PagesLinkedList listCopy = (PagesLinkedList) list.deepCopyUsingSerialization();
+
+        undoStack.push(listCopy);
+    }
+
+    // pops the top PagesLinkedList from undoStack
+    private PagesLinkedList popFromUndoStack() {
+        return undoStack.pop();
+    }
+
+    // pushes the given PagesLinkedList into the redoStack
+    private void pushIntoRedoStack(PagesLinkedList list) {
+        PagesLinkedList listCopy = (PagesLinkedList) list.deepCopyUsingSerialization();
+
+        redoStack.push(listCopy);
+    }
+
+    // pops the top PagesLinkedList from redoStack
+    private PagesLinkedList popFromRedoStack() {
+        return redoStack.pop();
     }
 
 }
