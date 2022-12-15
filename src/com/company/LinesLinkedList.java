@@ -1,6 +1,9 @@
 package com.company;
 
-public class LinesLinkedList {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class LinesLinkedList implements Serializable {
     private LineNode first; // first node in the likedList
     private LineNode last; // last node in the linkedList
 
