@@ -81,4 +81,9 @@ public class PageNode {
     public void findAndReplace(String oldString, String newString) {
         info.findAndReplace(oldString, newString);
     }
+
+    // returns all nodes (lines) in page
+    public ArrayList<String> getAllLinesInPage() {
+        return info.getAllNodes();
+    }
 }
