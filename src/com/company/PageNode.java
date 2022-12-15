@@ -1,8 +1,9 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PageNode {
+public class PageNode implements Serializable {
     private LinesLinkedList info; // contains all lines in this page
     private PageNode next; // next page (node) after this page in linkedList
 
