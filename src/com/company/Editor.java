@@ -127,30 +127,39 @@ public class Editor {
 
     // appends the given string to the end of the current page
     public void append(String[] liens) {
+        pushIntoUndoStack(pagesList);
+
         PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
         currentPage.append(liens);
 }
 
     // inserts the given string "newLine" to the nth line of the current page
     public void insert(String newLine, int n) {
+        pushIntoUndoStack(pagesList);
+
         PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
         currentPage.insert(newLine, n);
     }
 
     // removes nth line of the current page
     public void remove(int n) {
-        PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
-        currentPage.remove(n);
+        pushIntoUndoStack(pagesList);
+
+        pagesList.removeLineINSpecificPage(currentPageNumber, n);
     }
 
     // replaces the string currently in line n with the given string "newLine"
     public void replace(int n, String newLine) {
+        pushIntoUndoStack(pagesList);
+
         PageNode currentNode = pagesList.getSpecificPage(currentPageNumber);
         currentNode.replace(n, newLine);
     }
 
     // swaps line n with line m in the current page
     public void swap(int n, int m) {
+        pushIntoUndoStack(pagesList);
+
         PageNode currentPage = pagesList.getSpecificPage(currentPageNumber);
         currentPage.swap(n, m);
     }
@@ -164,6 +173,8 @@ public class Editor {
     // finds all instance of string "oldString" in the linkedList (file)
     // and replace them with string "newString"
     public void findAndReplace(String oldString, String newString) {
+        pushIntoUndoStack(pagesList);
+
         pagesList.findAndReplace(oldString, newString);
     }
 
