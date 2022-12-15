@@ -74,26 +74,34 @@ public class LinesLinkedList {
     }
 
     // removes the nth line of the page
-    public void remove(int n) {
+    public boolean remove(int n) {
+        boolean wasTheLastLine = false;
+
         if (isEmpty()) {
             System.out.println("The linked list is empty");
-            return;
-        }
-
-        LineNode currentNode = first;
-        LineNode previousNode = null;
-
-        for (int i = 0; i < n && currentNode != null; i++) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-
-        if (previousNode == null) {
-            first = first.getNext();
         }
         else {
-            previousNode.setNext(currentNode.getNext());
+
+            LineNode currentNode = first;
+            LineNode previousNode = null;
+
+            for (int i = 0; i < n && currentNode != null; i++) {
+                previousNode = currentNode;
+                currentNode = currentNode.getNext();
+            }
+
+            if (previousNode == null) {
+                first = first.getNext();
+                if (first == null) {
+                    wasTheLastLine = true;
+                }
+            }
+            else {
+                previousNode.setNext(currentNode.getNext());
+            }
         }
+
+        return wasTheLastLine;
     }
 
     // replaces the string currently in line n with the given string "newLine"
