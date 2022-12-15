@@ -2,6 +2,8 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,6 +47,43 @@ public class Editor {
             }
 
             pagesList.addPage(page);
+        }
+    }
+
+    // saves the changed linkedList in a file
+    public void save(String address) {
+        ArrayList<PageNode> pages = pagesList.getAllNodes();
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(address);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < pages.size(); i++) {
+            ArrayList<String> allLinesInPage = pages.get(i).getAllLinesInPage();
+
+            for (String line : allLinesInPage) {
+                try {
+                    writer.write(line + "\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (i < pages.size() - 1) {
+                try {
+                    writer.write("$\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
