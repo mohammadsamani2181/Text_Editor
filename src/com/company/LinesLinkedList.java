@@ -151,6 +151,19 @@ public class LinesLinkedList {
         }
     }
 
+    // returns all nodes (lines) in likedList (page)
+    public ArrayList<String> getAllNodes() {
+        LineNode temp = first;
+        ArrayList<String> lines = new ArrayList<>();
+
+        while (temp != null) {
+            lines.add(temp.getInfo());
+            temp = temp.getNext();
+        }
+
+        return lines;
+    }
+
     // prints all lines (nodes) in the linkedList
     public void print() {
         if (!isEmpty()) {
